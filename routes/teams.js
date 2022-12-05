@@ -36,20 +36,6 @@ router.get("/id=:teamId", async(req, res) => {
 
 // update team details
 
-router.put("/update/teamId=:id", async(req, res) => {
-    const teamId = req.params.id;
-    try {
-        const newTeam = await TeamsModel.findByIdAndUpdate(teamId, data, (err, result) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log(result);
-        });
-        res.send(newTeam);
-    } catch (err) {
-        console.log(err);
-    }
-})
 
 
 
