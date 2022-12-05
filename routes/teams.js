@@ -7,11 +7,6 @@ var bodyParser = require('body-parser')
 
 
 
-
-
-
-
-
 // get all teams
 router.get("/", async(req, res) => {
 
@@ -46,8 +41,6 @@ router.get("/id=:teamId", async(req, res) => {
 // update team details
 
 router.patch("/:id", async(req, res) => {
-
-
 
 
     try {
@@ -85,7 +78,6 @@ router.delete("/teamId=:id", async(req, res) => {
         console.log(err);
     }
 })
-
 
 
 

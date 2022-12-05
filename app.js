@@ -1,7 +1,7 @@
 // import libraies
 const express = require("express");
 const mongoose = require("mongoose");
-const port = 3000;
+const port = 3001;
 var bodyParser = require('body-parser')
 
 const app = express();
