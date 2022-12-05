@@ -8,6 +8,10 @@ var bodyParser = require('body-parser')
 
 
 
+
+
+
+
 // get all teams
 router.get("/", async(req, res) => {
 
@@ -41,20 +45,32 @@ router.get("/id=:teamId", async(req, res) => {
 
 // update team details
 
-router.patch('/teamId=:id', async(req, res) => {
-    try {
-        const updateTeambyId = await TeamsModel.updateOne({ _id: req.params.id }, {
-            $set: {
-                team_name: req.body.team_name,
-                team_country: req.body.team_country,
+router.patch("/:id", async(req, res) => {
 
+
+
+
+    try {
+        const id = req.params.id;
+        const update = req.body;
+        const options = { new: true };
+
+
+        const team = await TeamsModel.findByIdAndUpdate(id, update, (err, result) => {
+            if (err) {
+                console.log(err);
             }
-        })
-        res.send(updateTeambyId)
+            console.log(result);
+        });
+        res.send(team);
+
     } catch (err) {
-        res.send({ message: err })
+        res.status(404).send({ error: err })
     }
+
+
 })
+
 
 
 
@@ -71,6 +87,26 @@ router.delete("/teamId=:id", async(req, res) => {
 })
 
 
+
+
+// create team 
+
+router.post("/:id", async(req, res) => {
+    const id = req.params.id;
+    const newTeam = new TeamsModel({
+        team_name: req.body.team_name,
+        team_country: req.body.team_country,
+    })
+
+    try {
+        const saveTeam = await newTeam.save();
+        res.send(saveTeam);
+    } catch (err) {
+        console.log(err);
+    }
+
+
+})
 
 
 

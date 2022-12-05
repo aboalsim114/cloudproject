@@ -1,19 +1,21 @@
 // import libraies
 const express = require("express");
 const mongoose = require("mongoose");
-const port = 3001;
+const port = 3000;
+var bodyParser = require('body-parser')
+
 const app = express();
 const teamsRouter = require("./routes/teams");
-var bodyParser = require('body-parser')
+
 
 
 
 
 //Middleware
-
-app.use("/teams", teamsRouter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use("/teams", teamsRouter);
+
 
 
 // Routes 
